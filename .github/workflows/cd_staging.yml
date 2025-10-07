@@ -9,8 +9,7 @@ jobs:
     name: Deploying all the 3 to the staging cluster
 
     steps:
-      - name: SSH Into server and deploy
-        run: |
+        run: |  
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.48.178.239 << 'EOF'
