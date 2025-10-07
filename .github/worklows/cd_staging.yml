@@ -6,11 +6,12 @@ on:
 
 jobs:
   redeploy_everything:
+    runs-on: ubuntu-latest
     name: Deploying all the 3 to the staging cluster
 
     steps:
-      - name: SSH Into server
-      - run : |
+      name: SSH Into server
+      run : |
           echo ${{ secrets.SSH_PRIVATE_KEY}} &> ~/ssh_key
           ssh -i ~/ssh_key ubuntu@13.48.178.239
           cd book_ticket/ && git pull 
