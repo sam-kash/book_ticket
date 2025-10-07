@@ -14,11 +14,11 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.48.178.239 << 'EOF'
-            source ~/.bashrc
+            export PATH="/home/ubuntu/.nvm/versions/node/v24.9.0/bin:$PATH"
             cd book_ticket/
             git pull
             pnpm install
-            pnpm run build
+            pnpm turbo build
             pm2 restart fe-server
             pm2 restart http-server
             pm2 restart ws-server
