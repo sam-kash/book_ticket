@@ -17,6 +17,7 @@ jobs:
             export PATH="/home/ubuntu/.nvm/versions/node/v24.9.0/bin:$PATH"
             cd book_ticket/
             git pull
+            npm install -g pnpm
             pnpm install
             pnpm turbo build
             pm2 restart fe-server
