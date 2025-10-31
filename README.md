@@ -70,13 +70,3 @@ pnpm install    # or npm install / yarn install
 
  Run the Project
  ```
- # RUN THE PROJECT
- 
- ## Build & run via Docker Compose
-docker-compose up --build
-
-### Or run frontend + backend separately (if configured)
-## Backend:
-cd backend && npm run dev
-## Frontend:
-cd frontend && npm run dev
