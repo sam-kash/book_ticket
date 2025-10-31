@@ -1,135 +1,82 @@
-# Turborepo starter
+# Book Ticket 🎟️  
+**DevOps-based full-stack ticket booking application**
 
-This Turborepo starter is maintained by the Turborepo core team.
+## Table of Contents  
+- [Project Overview](#project-overview)  
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Architecture & DevOps](#architecture-&-devops)  
+- [Getting Started](#getting-started)  
+  - [Prerequisites](#prerequisites)  
+  - [Installation](#installation)  
+  - [Running the App](#running-the-app)  
+- [Usage](#usage)  
+- [Folder Structure](#folder-structure)  
+- [Contribution](#contribution)  
+- [License](#license)  
+- [Contact](#contact)  
 
-## Using this example
+## Project Overview  
+Book Ticket is a full-stack application enabling users to browse, select and book tickets for events, movies or travel (you can customize).  
+Unlike a simple CRUD app, this project emphasises DevOps practices — CI/CD pipelines, containerisation, infrastructure as code, monitoring – so it’s both a functional product **and** a showcase of end-to-end engineering.  
+This makes it ideal to demonstrate your full-stack + deployment proficiency at an interview.
 
-Run the following command:
+## Features  
+- User registration & login / authentication  
+- Browse events or shows, view details  
+- Select seat(s) and book tickets, with payment simulation  
+- Admin panel to add/edit events (optional)  
+- Real-time booking status updates  
+- Automatic builds, deployments and monitoring via DevOps toolchain  
+- Containerised micro-services (or modular monolith), easily scalable  
 
-```sh
-npx create-turbo@latest
-```
+## Tech Stack  
+| Layer          | Technologies                                          |
+|----------------|------------------------------------------------------|
+| Frontend       | React / Next.js, TypeScript, CSS/SCSS               |
+| Backend        | Node.js (Express) or your chosen backend framework   |
+| Database       | MongoDB / PostgreSQL                                  |
+| Infrastructure | Docker, Kubernetes (or Docker Compose)               |
+| CI/CD          | GitHub Actions (or similar)                          |
+| Monitoring     | Prometheus + Grafana, or native cloud monitoring     |
 
-## What's inside?
+*(Adjust the stack if you’re using different tools.)*
 
-This Turborepo includes the following packages/apps:
+## Architecture & DevOps  
+- Code lives in a mono-repo/workspace; front-end + back-end modules separated.  
+- Dockerfile(s) for each service; compose or k8s manifests for orchestration.  
+- CI pipeline: linting → unit tests → build → container image → deployment to staging/production.  
+- Infrastructure as code (Terraform / CloudFormation) to define environment.  
+- Logging & monitoring: aggregate logs, track metrics & alerts.  
+- Quality gates: code coverage, static analysis, security scans.
 
-### Apps and Packages
+## Getting Started  
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Prerequisites  
+- Node.js (>= 14) & npm or yarn/pnpm  
+- Docker & Docker Compose (or Kubernetes installed)  
+- Git  
+- Optional: cloud account if deploying to AWS/Azure/GCP  
+- Environment variables file (.env) with variables like `DB_URI`, `JWT_SECRET`, etc.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Installation  
+```bash
+# Clone the repo
+git clone https://github.com/sam-kash/book_ticket.git
+cd book_ticket
 
-### Utilities
+# Install dependencies (root + packages)
+pnpm install    # or npm install / yarn install
 
-This Turborepo has some additional tools already setup for you:
+ Run the Project
+ ```
+ # RUN THE PROJECT
+ 
+ ## Build & run via Docker Compose
+docker-compose up --build
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Or run frontend + backend separately (if configured)
+## Backend:
+cd backend && npm run dev
+## Frontend:
+cd frontend && npm run dev
